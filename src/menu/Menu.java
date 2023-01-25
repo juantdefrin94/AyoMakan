@@ -63,8 +63,22 @@ public class Menu {
 	public void registerMenu() {
 		String username = "", password = "";
 		User newUser = new User(username, password);
-		
-		userRepo.addUserList(newUser);
+		System.out.println("Username : ");
+		username = sc.getText();
+		Integer userLen = username.length();
+		if(userLen >= 8) {
+			System.out.println("Password : ");
+			password = sc.getText();
+			Integer passLen = password.length();
+			if(passLen >= 8) {
+				userRepo.addUserList(newUser);
+			}
+			else {
+				System.out.println("Password must equal to 8 or more!");
+			}	
+		}else {	
+			System.out.println("Username must equal to 8 or more!");
+		}
 	}
 
 }

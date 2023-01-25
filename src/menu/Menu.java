@@ -61,7 +61,10 @@ public class Menu {
 	}
 
 	public void registerMenu() {
+		String username = "", password = "";
+		User newUser = new User(username, password);
 		
+		userRepo.addUserList(newUser);
 	}
 
 }

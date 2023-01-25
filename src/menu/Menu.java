@@ -7,6 +7,7 @@ import utils.Scan;
 public class Menu {
 
 	private Scan sc = Scan.getInstance();
+	private UserRepository userRepo = UserRepository.getInstance();
 	
 	public Menu() {}
 	
@@ -26,7 +27,6 @@ public class Menu {
 
 	public boolean loginMenu() {
 		
-		UserRepository userRepo = UserRepository.getInstance();
 		String username = "", password = "";
 		boolean isExist = false;
 		

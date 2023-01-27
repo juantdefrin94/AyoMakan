@@ -1,26 +1,17 @@
 package models;
 
-public class AyoPay {
+public class AyoPay extends Card{
 	
-	private String cardName; 
 	private Integer balance;
 	private Boolean haveCard;
 	
-	public AyoPay(String cardName, Integer balance, Boolean haveCard) {
+	public AyoPay(Integer balance, Boolean haveCard) {
 		super();
-		this.cardName = cardName;
+		this.cardName = "AyoPay";
 		this.balance = balance;
 		this.haveCard = haveCard;
 	}
 	
-	public String getCardName() {
-		return cardName;
-	}
-
-	public void setCardName(String cardName) {
-		this.cardName = cardName;
-	}
-
 	public Integer getBalance() {
 		return balance;
 	}
@@ -35,5 +26,5 @@ public class AyoPay {
 
 	public void setHaveCard(Boolean haveCard) {
 		this.haveCard = haveCard;
-	}
+	}	
 }

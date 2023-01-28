@@ -62,23 +62,29 @@ public class Menu {
 
 	public void registerMenu() {
 		String username = "", password = "";
-		User newUser = new User(username, password);
-		System.out.println("Username : ");
-		username = sc.getText();
-		Integer userLen = username.length();
-		if(userLen >= 8) {
+		
+		//get username
+		while(true) {
+			System.out.println("Username : ");
+			username = sc.getText();
+			int userLen = username.length();
+			if(userLen >= 8) break;
+			else System.out.println("Username must equal to 8 or more!");
+		}
+		
+		//get password
+		while(true) {
 			System.out.println("Password : ");
 			password = sc.getText();
-			Integer passLen = password.length();
-			if(passLen >= 8) {
-				userRepo.addUserList(newUser);
-			}
-			else {
-				System.out.println("Password must equal to 8 or more!");
-			}	
-		}else {	
-			System.out.println("Username must equal to 8 or more!");
+			int passLen = password.length();			
+			if(passLen >= 8) break;
+			else System.out.println("Password must equal to 8 or more!");
 		}
+		
+		//add user to repo
+		User newUser = new User(username, password);
+		userRepo.addUserList(newUser);	
+		
 	}
 
 }

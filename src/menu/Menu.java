@@ -106,11 +106,82 @@ public class Menu {
 	}
 	
 	public void userMainMenu() {
-		
+		int pil = 0;
+		do {
+			System.out.print(
+					"Ay0 m@k4n!!\n" +
+							"===========\n" +
+							"1. Order Food\n" +
+							"2. Balance Check\n" +
+							"3. Top Up\n" +
+							"4. Back\n" +
+							">> "
+					);
+			pil = sc.getNum();
+			
+			switch (pil) {
+			case 1: 
+				System.out.println("ini pil 1");
+				break;
+			
+			default:
+				break;
+			}		
+		} while (pil != 4);
 	}
 	
 	public void adminMainMenu() {
+		int pil = 0;
+		do {
+			System.out.print(
+					"===== Admin Menu =====\n" +
+					"Ay0 m@k4n!!\n" +
+							"===========\n" +
+							"1. Order Food\n" +
+							"2. Balance Check\n" +
+							"3. Top Up\n" +
+							"4. Add Food\n" +
+							"4. Back\n" +
+							">> "
+					);
+			pil = sc.getNum();
+			
+			switch (pil) {
+			case 1: 
+				System.out.println("ini pil 1");
+				break;
+			
+			default:
+				break;
+			}		
+		} while (pil != 5);
+	}
+	
+	public void createCardMenu() {
+		int pil = 0;
+		do {
+			System.out.print(
+					"Ay0 m@k4n!!\n" +
+							"===========\n" +
+							"1. Create AyoPay" +
+							"2. Create SophiPay\n" +
+							"3. Back\n" +
+							">> "
+					);
+			pil = sc.getNum();
+			
+			switch (pil) {
+			case 1: 
+				System.out.println("ini pil 1");
+				break;
+			
+			default:
+				break;
+			}		
+		} while (pil != 3);
+	}
+	
+	public void topUpMenu() {
 		
 	}
-
 }

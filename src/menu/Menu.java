@@ -1,5 +1,6 @@
 package menu;
 
+import iterator.ShowFood;
 import models.User;
 import repository.UserRepository;
 import utils.Scan;
@@ -121,13 +122,28 @@ public class Menu {
 			
 			switch (pil) {
 			case 1: 
-				System.out.println("ini pil 1");
+				orderFood();
 				break;
 			
 			default:
 				break;
 			}		
 		} while (pil != 4);
+	}
+	
+	public void orderFood() {
+		ShowFood showFood = new ShowFood();
+		
+		int no = 1;
+		while(showFood.hasNext()) {
+			System.out.print(no++ + ". " + showFood.getNext().getFoodName() + " - Rp. " + showFood.getNext().getFoodPrice());
+		}
+		
+		if(no == 1) {
+			sc.showAlert("Data not Found!");
+			return;
+		}
+		
 	}
 	
 	public void adminMainMenu() {

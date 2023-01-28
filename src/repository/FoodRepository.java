@@ -24,7 +24,7 @@ public class FoodRepository {
 		return foodList;
 	}
 
-	public void addUserList(Food newFood) {
+	public void addFoodList(Food newFood) {
 		foodList.add(newFood);
 	}
 

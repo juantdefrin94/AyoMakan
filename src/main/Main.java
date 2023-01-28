@@ -62,13 +62,13 @@ public class Main {
 		
 		//adding dummy food Data
 		Food newFood = new Food("Nasi Goreng", 20000);
-		foodRepository.addUserList(newFood);
+		foodRepository.addFoodList(newFood);
 		
 		newFood = new Food("Martabak", 30000);
-		foodRepository.addUserList(newFood);
+		foodRepository.addFoodList(newFood);
 		
 		newFood = new Food("Sate", 15000);
-		foodRepository.addUserList(newFood);
+		foodRepository.addFoodList(newFood);
 	}
 	
 	private void clearScreen() {

@@ -1,18 +1,18 @@
 package models;
 
-public class AyoPay implements Payment{
-	
+public class CashPay implements Payment{
+
 	private String paymentName;
 	private Integer balance;
 	private Boolean haveCard;
 	
-	public AyoPay(Integer balance, Boolean haveCard) {
+	public CashPay(Integer balance, Boolean haveCard) {
 		super();
-		this.paymentName = "AyoPay";
+		this.paymentName = "Cash";
 		this.balance = balance;
 		this.haveCard = haveCard;
 	}
-	
+
 	public Integer getBalance() {
 		return balance;
 	}

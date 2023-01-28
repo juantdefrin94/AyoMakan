@@ -25,7 +25,7 @@ public class Menu {
 		return pil;
 	}
 
-	public boolean loginMenu() {
+	public int loginMenu() {
 		
 		String username = "", password = "";
 		boolean isExist = false;
@@ -39,13 +39,16 @@ public class Menu {
 				
 				isExist = true;
 				
-				System.out.println("Password : ");
+				System.out.print("Password : ");
 				password = sc.getText();
 				
 				if(currUser.getPassword().equals(password)) {
-					return true;
+					
+					//if admin
+					if(currUser.getUsername().equals("admin")) return 1;
+					else return 2;
 				}
-				System.out.println("Wrong Password!\n"); sc.getEnter();
+				sc.showAlert("Wrong Password!\n"); 
 				
 				break;
 			}
@@ -57,33 +60,56 @@ public class Menu {
 			System.out.println("Wrong password!");
 		}
 		
-		return false;
+		return 0;
 	}
 
 	public void registerMenu() {
 		String username = "", password = "";
+		boolean isExist = false;
 		
 		//get username
 		while(true) {
-			System.out.println("Username : ");
+			System.out.print("Username ('back' to back): ");
 			username = sc.getText();
+			if(username.equals("back")) return;
+			
 			int userLen = username.length();
 			if(userLen >= 8) break;
-			else System.out.println("Username must equal to 8 or more!");
+			else sc.showAlert("Username must equal to 8 or more!");
+			
+			isExist = false;
+			for (User curr : userRepo.getUserList()) {
+				if(curr.getUsername().equals(username)) isExist = true;
+			}
+			
+			if(isExist) sc.showAlert("Username is already exist!");
+			else break;
 		}
 		
 		//get password
 		while(true) {
-			System.out.println("Password : ");
+			System.out.print("Password (min 8 characters) ('back' to back) : ");
 			password = sc.getText();
-			int passLen = password.length();			
+			if(password.equals("back")) return;
+			
+			int passLen = password.length();	
 			if(passLen >= 8) break;
-			else System.out.println("Password must equal to 8 or more!");
+			else sc.showAlert("Password must equal to 8 or more!");
 		}
 		
 		//add user to repo
 		User newUser = new User(username, password);
-		userRepo.addUserList(newUser);	
+		userRepo.addUserList(newUser);
+		
+		sc.showAlert("Succesfully registering user");
+		
+	}
+	
+	public void userMainMenu() {
+		
+	}
+	
+	public void adminMainMenu() {
 		
 	}
 

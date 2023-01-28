@@ -29,7 +29,8 @@ public class Scan {
 		return x;
 	}
 	
-	public void getEnter() {
+	public void showAlert(String text) {
+		System.out.print(text);
 		sc.nextLine();
 	}
 

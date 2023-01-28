@@ -1,12 +1,13 @@
 package models;
 
-public class SophiPay extends Card{
+public class SophiPay implements Payment{
 	
+	private String paymentName;
 	private Integer balance;
 	private Boolean haveCard;
 	
 	public SophiPay(Integer balance, Boolean haveCard) {
-		this.cardName = "SophiPay";
+		this.paymentName = "SophiPay";
 		this.balance = balance;
 		this.haveCard = haveCard;
 	}	
@@ -25,6 +26,15 @@ public class SophiPay extends Card{
 
 	public void setHaveCard(Boolean haveCard) {
 		this.haveCard = haveCard;
+	}
+	
+	public String getPaymentName() {
+		return paymentName;
+	}
+
+	@Override
+	public void pay() {
+		
 	}
 
 }

@@ -4,11 +4,13 @@ public class User {
 
 	private String username;
 	private String password;
+	private int balance;
 	
 	public User(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
+		this.balance = 0;
 	}
 
 	public String getUsername() {
@@ -25,6 +27,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public int getBalance() {
+		return balance;
+	}
+
+	public void setBalance(int balance) {
+		this.balance = balance;
 	}
 	
 }

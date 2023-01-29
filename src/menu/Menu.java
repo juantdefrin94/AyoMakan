@@ -1,8 +1,13 @@
 package menu;
 
-import iterator.ShowFood;
+import java.util.ArrayList;
+
+import iterator.FoodCollection;
+import iterator.ICollection;
+import iterator.Iterator;
 import models.Food;
 import models.User;
+import repository.FoodRepository;
 import repository.UserRepository;
 import utils.Scan;
 
@@ -10,6 +15,8 @@ public class Menu {
 
 	private Scan sc = Scan.getInstance();
 	private UserRepository userRepo = UserRepository.getInstance();
+	private FoodRepository foodRepo = FoodRepository.getInstance();
+	private User currUser = null;
 	
 	public Menu() {}
 	
@@ -34,6 +41,7 @@ public class Menu {
 		
 		System.out.print("Username : ");
 		username = sc.getText();
+		int i = 0;
 		
 		for (User currUser : userRepo.getUserList()) {
 			
@@ -46,6 +54,8 @@ public class Menu {
 				
 				if(currUser.getPassword().equals(password)) {
 					
+					currUser = userRepo.getUserList().get(i);
+					
 					//if admin
 					if(currUser.getUsername().equals("admin")) return 1;
 					else return 2;
@@ -54,6 +64,8 @@ public class Menu {
 				
 				break;
 			}
+			
+			i++;
 		}
 		
 		if(!isExist) {
@@ -125,40 +137,48 @@ public class Menu {
 			case 1: 
 				orderFood();
 				break;
-			
+			case 2:
+				checkBalance();
 			default:
 				break;
 			}		
 		} while (pil != 4);
 	}
 	
-	public void orderFood() {
-		ShowFood showFood = new ShowFood();
-		
-		if(showFood.foodSize() == 0) {
+	private void checkBalance() {
+//		System.out.print("Your Balance : " + currUser.getBalance()); 
+		sc.showAlert(null);
+	}
+
+	private void orderFood() {
+		System.out.println("Menu :");
+		int size = iterateFood(foodRepo.getFoodList());
+		if(size == 0) {
 			sc.showAlert("Data not Found!");
 			return;
 		}
 		
-		System.out.println("Menu :");
-		int no = 1;
-		while(showFood.hasNext()) {
-			Food currFood = showFood.getNext();
-			System.out.println(no++ + ". " + currFood.getFoodName() + " - Rp. " + currFood.getFoodPrice());
-		}
 		System.out.println("0. Back");
-		no--;
 		
 		int menu = 0;
 		while(true) {
 			System.out.print("Please Choose The Menu : ");
 			menu = sc.getNum();
 			if(menu == 0) return;
-			if(menu < 0 || menu > no) sc.showAlert("Please input between [0 - " + no + "]!");
+			if(menu < 0 || menu > size) sc.showAlert("Please input between [0 - " + size + "]!");
 			else break;
 		}
-		
-		
+	}
+	
+	private int iterateFood(ArrayList <Food>foodList) {
+		int size = 0;
+		ICollection collection = new FoodCollection(foodList);
+		Iterator iterator = collection.createIterator();
+		while(iterator.hasNext()) {
+			Food curr = (Food) iterator.getNext();	
+			System.out.println(++size + ". " + curr.getFoodName() + " - Rp. " + curr.getFoodPrice());
+		}
+		return size;
 	}
 	
 	public void adminMainMenu() {

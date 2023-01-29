@@ -16,7 +16,7 @@ public class Menu {
 	private Scan sc = Scan.getInstance();
 	private UserRepository userRepo = UserRepository.getInstance();
 	private FoodRepository foodRepo = FoodRepository.getInstance();
-	private User currUser = null;
+	private User currUser;
 	
 	public Menu() {}
 	
@@ -54,7 +54,7 @@ public class Menu {
 				
 				if(currUser.getPassword().equals(password)) {
 					
-					currUser = userRepo.getUserList().get(i);
+					this.currUser = userRepo.getUserList().get(i);
 					
 					//if admin
 					if(currUser.getUsername().equals("admin")) return 1;
@@ -128,7 +128,7 @@ public class Menu {
 							"1. Order Food\n" +
 							"2. Balance Check\n" +
 							"3. Top Up\n" +
-							"4. Back\n" +
+							"0. Back\n" +
 							">> "
 					);
 			pil = sc.getNum();
@@ -146,8 +146,8 @@ public class Menu {
 	}
 	
 	private void checkBalance() {
-//		System.out.print("Your Balance : " + currUser.getBalance()); 
-		sc.showAlert(null);
+		System.out.print("Your Balance : " + currUser.getBalance()); 
+		sc.showAlert("");
 	}
 
 	private void orderFood() {
@@ -188,11 +188,9 @@ public class Menu {
 					"===== Admin Menu =====\n" +
 					"Ay0 m@k4n!!\n" +
 							"===========\n" +
-							"1. Order Food\n" +
-							"2. Balance Check\n" +
-							"3. Top Up\n" +
-							"4. Add Food\n" +
-							"4. Back\n" +
+							"1. Edit Food\n" +
+							"2. Add Food\n" +
+							"0. Back\n" +
 							">> "
 					);
 			pil = sc.getNum();
@@ -216,7 +214,7 @@ public class Menu {
 							"===========\n" +
 							"1. Create AyoPay" +
 							"2. Create SophiPay\n" +
-							"3. Back\n" +
+							"0. Back\n" +
 							">> "
 					);
 			pil = sc.getNum();

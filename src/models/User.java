@@ -4,7 +4,7 @@ public class User {
 
 	private String username;
 	private String password;
-	private int balance;
+	private Integer balance = 0;
 	
 	public User(String username, String password) {
 		super();

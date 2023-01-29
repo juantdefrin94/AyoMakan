@@ -5,7 +5,7 @@ public class User {
 	private String username;
 	private String password;
 	private PaymentMethod ayoPay = null;
-	private PaymentMethod shopiPay = null;
+	private PaymentMethod sophiPay = null;
 	
 	
 	public User(String username, String password) {
@@ -38,12 +38,12 @@ public class User {
 		this.ayoPay = ayoPay;
 	}
 
-	public PaymentMethod getShopiPay() {
-		return shopiPay;
+	public PaymentMethod getSophiPay() {
+		return sophiPay;
 	}
 
-	public void setShopiPay(PaymentMethod shopiPay) {
-		this.shopiPay = shopiPay;
+	public void setSophiPay(PaymentMethod sophiPay) {
+		this.sophiPay = sophiPay;
 	}
 
 }

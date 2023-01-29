@@ -152,7 +152,7 @@ public class Menu {
 			default:
 				break;
 			}		
-		} while (pil != 4);
+		} while (pil != 0);
 	}
 	
 	private void addPayment() {
@@ -174,40 +174,76 @@ public class Menu {
 			case 1: 
 				newPaymentMethod = payMethodFactory.addPaymentMethod("AyoPay");
 				currUser.setAyoPay(newPaymentMethod);
+				sc.showAlert("Successfully made AyoPay!");
 				break;
 			case 2:
 				newPaymentMethod = payMethodFactory.addPaymentMethod("SophiPay");
 				currUser.setAyoPay(newPaymentMethod);
+				sc.showAlert("Successfully made SophiPay!");
 				break;
 			case 0:
-				return;
+				break;
 			default:
 				sc.showAlert("Please Enter [0 - 2]!");
 				break;
 			}		
-		} while (pil != 3);
+		} while (pil != 0);
 	}
 
 	private void topUpMenu() {
-		
-	}
-	
-	private void checkBalance() {
-		if(currUser.getAyoPay() == null && currUser.getShopiPay() == null) {
+		if(currUser.getAyoPay() == null && currUser.getSophiPay() == null) {
 			sc.showAlert("No Data Found!");
-		}else if(currUser.getAyoPay() == null || currUser.getShopiPay() == null){
+			return;
+		}else if(currUser.getAyoPay() == null || currUser.getSophiPay() == null){
 			if(currUser.getAyoPay() != null) {
 				System.out.println("Your AyoPay Balance : " + currUser.getAyoPay().getBalance());
 			}else {
-				System.out.println("Your ShopiPay Balance : " + currUser.getShopiPay().getBalance());
+				System.out.println("Your ShopiPay Balance : " + currUser.getSophiPay().getBalance());
+			}
+		}else {
+			System.out.println("Your AyoPay Balance : " + currUser.getAyoPay().getBalance());
+			System.out.print("Your ShopiPay Balance : " + currUser.getSophiPay().getBalance());
+		}
+		String paymentName = "";
+		int topUp = 0;
+		while(true) {
+			System.out.print("Select the payment method that you want to top up [ AyoPay | SophiPay | Cancel ]: ");
+			paymentName = sc.getText();
+			if(paymentName.equalsIgnoreCase("Cancel")) return;
+			else if(paymentName.equalsIgnoreCase("AyoPay")) {
+				System.out.print("How much will you top up? ");
+				topUp = sc.getNum();
+				currUser.getAyoPay().setBalance(topUp);
+				sc.showAlert("Successfully top up AyoPay!");
+				break;
+			}else if(paymentName.equalsIgnoreCase("SophiPay")){
+				System.out.print("How much will you top up? ");
+				topUp = sc.getNum();
+				currUser.getSophiPay().setBalance(topUp);
+				sc.showAlert("Successfully top up SophiPay!");
+				break;
+			}else {
+				sc.showAlert("Please Input between [ AyoPay | SophiPay | Cancel ]!");
+			}
+		}
+	}
+	
+	private void checkBalance() {
+		if(currUser.getAyoPay() == null && currUser.getSophiPay() == null) {
+			sc.showAlert("No Data Found!");
+			return;
+		}else if(currUser.getAyoPay() == null || currUser.getSophiPay() == null){
+			if(currUser.getAyoPay() != null) {
+				System.out.println("Your AyoPay Balance : " + currUser.getAyoPay().getBalance());
+			}else {
+				System.out.println("Your ShopiPay Balance : " + currUser.getSophiPay().getBalance());
 			}
 			sc.showAlert("");
 		}else {
 			System.out.println("Your AyoPay Balance : " + currUser.getAyoPay().getBalance());
-			System.out.print("Your ShopiPay Balance : " + currUser.getShopiPay().getBalance());
+			System.out.print("Your ShopiPay Balance : " + currUser.getSophiPay().getBalance());
 			sc.showAlert("");
 		}
-		
 	}
 
 	private void orderFood() {

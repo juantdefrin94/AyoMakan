@@ -27,7 +27,7 @@ public class Main {
 			switch (pil) {
 			case 1:
 				isLoggedIn = menu.loginMenu();
-//				if(isLoggedIn == 1 || isLoggedIn == 2) sc.showAlert("Succesfully logged in!");
+				if(isLoggedIn == 1 || isLoggedIn == 2) sc.showAlert("Succesfully logged in!");
 				
 				if(isLoggedIn == 1) { 
 					clearScreen();

@@ -1,4 +1,8 @@
+/adapter/
+/factory/
 /iterator/
-/menu/
 /main/
+/menu/
 /models/
+/repository/
+/utils/

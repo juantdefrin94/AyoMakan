@@ -1,33 +1,14 @@
 package models;
 
-public class SophiPay implements Payment{
+public class SophiPay extends PaymentMethod implements Payment{
 	
 	private String paymentName;
-	private Integer balance;
-	private Boolean haveCard;
-	
-	public SophiPay(Integer balance, Boolean haveCard) {
-		this.paymentName = "SophiPay";
-		this.balance = balance;
-		this.haveCard = haveCard;
-	}	
-	
-	public Integer getBalance() {
-		return balance;
+
+	public SophiPay() {
+		super(0, 25.0);
+		this.paymentName = "ShopiPay";
 	}
 
-	public void setBalance(Integer balance) {
-		this.balance = balance;
-	}
-
-	public Boolean getHaveCard() {
-		return haveCard;
-	}
-
-	public void setHaveCard(Boolean haveCard) {
-		this.haveCard = haveCard;
-	}
-	
 	public String getPaymentName() {
 		return paymentName;
 	}

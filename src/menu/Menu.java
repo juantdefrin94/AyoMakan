@@ -2,10 +2,12 @@ package menu;
 
 import java.util.ArrayList;
 
+import factory.PayMethodFactory;
 import iterator.FoodCollection;
 import iterator.ICollection;
 import iterator.Iterator;
 import models.Food;
+import models.PaymentMethod;
 import models.User;
 import repository.FoodRepository;
 import repository.UserRepository;
@@ -128,6 +130,7 @@ public class Menu {
 							"1. Order Food\n" +
 							"2. Balance Check\n" +
 							"3. Top Up\n" +
+							"4. Add Payment Method\n" +
 							"0. Back\n" +
 							">> "
 					);
@@ -139,15 +142,72 @@ public class Menu {
 				break;
 			case 2:
 				checkBalance();
+				break;
+			case 3:
+				topUpMenu();
+				break;
+			case 4:
+				addPayment();
+				break;
 			default:
 				break;
 			}		
 		} while (pil != 4);
 	}
 	
+	private void addPayment() {
+		PayMethodFactory payMethodFactory = new PayMethodFactory();
+		PaymentMethod newPaymentMethod = null;
+		int pil = 0;
+		do {
+			System.out.print(
+						"Ay0 m@k4n!!\n" +
+						"===========\n" +
+						"1. Create AyoPay\n" +
+						"2. Create SophiPay\n" +
+						"0. Back\n" +
+						">> "
+					);
+			pil = sc.getNum();
+			
+			switch (pil) {
+			case 1: 
+				newPaymentMethod = payMethodFactory.addPaymentMethod("AyoPay");
+				currUser.setAyoPay(newPaymentMethod);
+				break;
+			case 2:
+				newPaymentMethod = payMethodFactory.addPaymentMethod("SophiPay");
+				currUser.setAyoPay(newPaymentMethod);
+				break;
+			case 0:
+				return;
+			default:
+				sc.showAlert("Please Enter [0 - 2]!");
+				break;
+			}		
+		} while (pil != 3);
+	}
+
+	private void topUpMenu() {
+		
+	}
+	
 	private void checkBalance() {
-		System.out.print("Your Balance : " + currUser.getBalance()); 
-		sc.showAlert("");
+		if(currUser.getAyoPay() == null && currUser.getShopiPay() == null) {
+			sc.showAlert("No Data Found!");
+		}else if(currUser.getAyoPay() == null || currUser.getShopiPay() == null){
+			if(currUser.getAyoPay() != null) {
+				System.out.println("Your AyoPay Balance : " + currUser.getAyoPay().getBalance());
+			}else {
+				System.out.println("Your ShopiPay Balance : " + currUser.getShopiPay().getBalance());
+			}
+			sc.showAlert("");
+		}else {
+			System.out.println("Your AyoPay Balance : " + currUser.getAyoPay().getBalance());
+			System.out.print("Your ShopiPay Balance : " + currUser.getShopiPay().getBalance());
+			sc.showAlert("");
+		}
+		
 	}
 
 	private void orderFood() {
@@ -206,31 +266,4 @@ public class Menu {
 		} while (pil != 5);
 	}
 	
-	public void createCardMenu() {
-		int pil = 0;
-		do {
-			System.out.print(
-					"Ay0 m@k4n!!\n" +
-							"===========\n" +
-							"1. Create AyoPay" +
-							"2. Create SophiPay\n" +
-							"0. Back\n" +
-							">> "
-					);
-			pil = sc.getNum();
-			
-			switch (pil) {
-			case 1: 
-				System.out.println("ini pil 1");
-				break;
-			
-			default:
-				break;
-			}		
-		} while (pil != 3);
-	}
-	
-	public void topUpMenu() {
-		
-	}
 }

@@ -4,13 +4,14 @@ public class User {
 
 	private String username;
 	private String password;
-	private Integer balance = 0;
+	private PaymentMethod ayoPay = null;
+	private PaymentMethod shopiPay = null;
+	
 	
 	public User(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
-		this.balance = 0;
 	}
 
 	public String getUsername() {
@@ -29,12 +30,20 @@ public class User {
 		this.password = password;
 	}
 
-	public int getBalance() {
-		return balance;
+	public PaymentMethod getAyoPay() {
+		return ayoPay;
 	}
 
-	public void setBalance(int balance) {
-		this.balance = balance;
+	public void setAyoPay(PaymentMethod ayoPay) {
+		this.ayoPay = ayoPay;
 	}
-	
+
+	public PaymentMethod getShopiPay() {
+		return shopiPay;
+	}
+
+	public void setShopiPay(PaymentMethod shopiPay) {
+		this.shopiPay = shopiPay;
+	}
+
 }

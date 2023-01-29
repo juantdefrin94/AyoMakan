@@ -1,6 +1,6 @@
 package adapter;
 
-public interface PaymentMethod {
+public interface IPaymentMethod {
 
 	void payingBill(int bill);
 

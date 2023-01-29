@@ -2,13 +2,13 @@ package adapter;
 
 public class Pay {
 
-	private PaymentMethod paymentMethod;
+	private IPaymentMethod paymentMethod;
 	
-	public PaymentMethod getPaymentMethod() {
+	public IPaymentMethod getPaymentMethod() {
 		return paymentMethod;
 	}
 
-	public void setPaymentMethod(PaymentMethod paymentMethod) {
+	public void setPaymentMethod(IPaymentMethod paymentMethod) {
 		this.paymentMethod = paymentMethod;
 	}
 

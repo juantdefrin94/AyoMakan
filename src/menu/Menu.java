@@ -1,6 +1,7 @@
 package menu;
 
 import iterator.ShowFood;
+import models.Food;
 import models.User;
 import repository.UserRepository;
 import utils.Scan;
@@ -134,15 +135,29 @@ public class Menu {
 	public void orderFood() {
 		ShowFood showFood = new ShowFood();
 		
-		int no = 1;
-		while(showFood.hasNext()) {
-			System.out.print(no++ + ". " + showFood.getNext().getFoodName() + " - Rp. " + showFood.getNext().getFoodPrice());
-		}
-		
-		if(no == 1) {
+		if(showFood.foodSize() == 0) {
 			sc.showAlert("Data not Found!");
 			return;
 		}
+		
+		System.out.println("Menu :");
+		int no = 1;
+		while(showFood.hasNext()) {
+			Food currFood = showFood.getNext();
+			System.out.println(no++ + ". " + currFood.getFoodName() + " - Rp. " + currFood.getFoodPrice());
+		}
+		System.out.println("0. Back");
+		no--;
+		
+		int menu = 0;
+		while(true) {
+			System.out.print("Please Choose The Menu : ");
+			menu = sc.getNum();
+			if(menu == 0) return;
+			if(menu < 0 || menu > no) sc.showAlert("Please input between [0 - " + no + "]!");
+			else break;
+		}
+		
 		
 	}
 	

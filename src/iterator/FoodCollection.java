@@ -40,5 +40,4 @@ public class FoodCollection implements ICollection{
 		
 	}
 
-
 }

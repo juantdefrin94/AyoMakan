@@ -257,12 +257,35 @@ public class Menu {
 		System.out.println("0. Back");
 		
 		int menu = 0;
-		while(true) {
-			System.out.print("Please Choose The Menu : ");
-			menu = sc.getNum();
-			if(menu == 0) return;
-			if(menu < 0 || menu > size) sc.showAlert("Please input between [0 - " + size + "]!");
-			else break;
+		boolean done = false;
+		String input = "";
+		while(!done) {
+			while(true) {
+				done = false;
+				System.out.print("Please Choose The Menu : ");
+				menu = sc.getNum();
+				if(menu == 0) return;
+				if(menu < 0 || menu > size) sc.showAlert("Please input between [0 - " + size + "]!");
+				else {
+					done = true;
+					break;
+				}
+			}
+			if(done) {
+				int quantity = 0;
+				while(true) {
+					System.out.print("Quantity : "); quantity = sc.getNum();
+					if(quantity != 0) break;
+				}
+				
+				System.out.print("Do you want to buy another food? (Y/N) : ");
+				input = sc.getText();
+				if(input.equalsIgnoreCase("Y")) {
+					done = false;
+				}else if(input.equalsIgnoreCase("N")){
+					break;
+				}
+			}
 		}
 	}
 	
@@ -293,13 +316,80 @@ public class Menu {
 			
 			switch (pil) {
 			case 1: 
-				System.out.println("ini pil 1");
+				editFood();
 				break;
-			
+			case 2:
+				addFood();
+				break;
+			case 0:
+				break;
 			default:
 				break;
 			}		
-		} while (pil != 5);
+		} while (pil != 0);
+	}
+	
+	private void addFood() {
+		String foodName = "";
+		int foodPrice = 0;
+		System.out.println("Add Food to The List!");
+		
+		while(true) {
+			System.out.print("Input new food name: ");
+			foodName = sc.getText();
+			if(!foodName.equals("\n")) break;
+		}
+		
+		while(true) {
+			System.out.print("Input new food price: ");
+			foodPrice = sc.getNum();
+			if(foodPrice != 0) break;
+		}
+		
+		foodRepo.addFoodList(new Food(foodName, foodPrice));
+		System.out.printf("Successfully Added New Food! (%s - %d)\n", foodName, foodPrice);
+	}
+	
+	private void editFood() {
+		System.out.println("Menu :");
+		int size = iterateFood(foodRepo.getFoodList());
+		if(size == 0) {
+			sc.showAlert("Data not Found!");
+			return;
+		}
+		
+		System.out.println("0. Back to Main Menu");
+		
+		String newFoodName = "";
+		int newFoodPrice = 0;
+		int pil = 0;
+		while(true) {
+			System.out.print("What food do you want to edit? [ 0 - " + size + " ]: ");
+			pil = sc.getNum();
+			
+			if(pil == 0) return;
+			else if(pil > 0 && pil <= size) break;
+			else sc.showAlert("Please Choose Between [ 0 - " + size + " ]!");
+		}
+		
+		while(true) {
+			System.out.print("Input new food name: ");
+			newFoodName = sc.getText();
+			if(!newFoodName.equals("\n")) break;
+		}
+		
+		while(true) {
+			System.out.print("Input new food price: ");
+			newFoodPrice = sc.getNum();
+			if(newFoodPrice != 0) break;
+		}
+		
+		Food currFood = foodRepo.getFoodList().get(pil - 1);
+		
+		currFood.setFoodName(newFoodName);
+		currFood.setFoodPrice(newFoodPrice);
+		
+		sc.showAlert("Food is successfully edited!");
 	}
 	
 }

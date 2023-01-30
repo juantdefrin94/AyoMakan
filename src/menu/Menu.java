@@ -189,7 +189,7 @@ public class Menu {
 				return;
 			case 2:
 				newPaymentMethod = payMethodFactory.addPaymentMethod("SophiPay");
-				currUser.setAyoPay(newPaymentMethod);
+				currUser.setSophiPay(newPaymentMethod);
 				sc.showAlert("Successfully made SophiPay!");
 				return;
 			case 0:

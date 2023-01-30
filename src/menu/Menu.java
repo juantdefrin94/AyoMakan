@@ -7,10 +7,14 @@ import iterator.FoodCollection;
 import iterator.ICollection;
 import iterator.Iterator;
 import models.Food;
+import models.FoodCart;
 import models.PaymentMethod;
 import models.User;
 import repository.FoodRepository;
 import repository.UserRepository;
+import state.IState;
+import state.OrderState;
+import state.State;
 import utils.Scan;
 
 public class Menu {
@@ -149,7 +153,10 @@ public class Menu {
 			case 4:
 				addPayment();
 				break;
+			case 0:
+				break;
 			default:
+				sc.showAlert("Please Enter 0 - 4!");
 				break;
 			}		
 		} while (pil != 0);
@@ -247,6 +254,7 @@ public class Menu {
 	}
 
 	private void orderFood() {
+		FoodCart cart = new FoodCart();
 		System.out.println("Menu :");
 		int size = iterateFood(foodRepo.getFoodList());
 		if(size == 0) {
@@ -278,6 +286,9 @@ public class Menu {
 					if(quantity != 0) break;
 				}
 				
+				cart.getFoodCart().add(foodRepo.getFoodList().get(menu - 1));
+				cart.getFoodQuantity().add(quantity);
+				
 				System.out.print("Do you want to buy another food? (Y/N) : ");
 				input = sc.getText();
 				if(input.equalsIgnoreCase("Y")) {
@@ -287,6 +298,13 @@ public class Menu {
 				}
 			}
 		}
+		
+		//start state to order
+		State state = new State();
+		do {
+			state.getState().changeState(state, cart);
+		}while(!(state.getState() instanceof OrderState));
+		
 	}
 	
 	private int iterateFood(ArrayList <Food>foodList) {
@@ -324,6 +342,7 @@ public class Menu {
 			case 0:
 				break;
 			default:
+				sc.showAlert("Please Enter 0 - 2!");
 				break;
 			}		
 		} while (pil != 0);

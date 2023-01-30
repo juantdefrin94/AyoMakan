@@ -1,9 +1,12 @@
 package state;
 
+import java.util.ArrayList;
+
 import models.FoodCart;
+import models.User;
 
 public interface IState {
 
-	public void changeState(State state, FoodCart cart);
+	boolean doState(FoodCart cart, User currUser);
 	
 }

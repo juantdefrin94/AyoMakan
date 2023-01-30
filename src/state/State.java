@@ -1,12 +1,13 @@
 package state;
 
-public class State {
+import java.util.ArrayList;
+
+import models.FoodCart;
+import models.User;
+
+public class State implements IState{
 
 	private IState state;
-	
-	public State() {
-		state = new OrderState();
-	}
 	
 	public void setState(IState state) {
 		this.state = state;
@@ -14,6 +15,12 @@ public class State {
 	
 	public IState getState() {
 		return state;
+	}
+
+	@Override
+	public boolean doState(FoodCart cart, User currUser) {
+		boolean stateReturn = state.doState(cart, currUser);
+		return stateReturn;
 	}
 
 }

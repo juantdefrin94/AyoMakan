@@ -14,6 +14,8 @@ import repository.FoodRepository;
 import repository.UserRepository;
 import state.IState;
 import state.OrderState;
+import state.PayState;
+import state.SendState;
 import state.State;
 import utils.Scan;
 
@@ -300,10 +302,22 @@ public class Menu {
 		}
 		
 		//start state to order
+		boolean returnState = false;
 		State state = new State();
-		do {
-			state.getState().changeState(state, cart);
-		}while(!(state.getState() instanceof OrderState));
+		
+		state.setState(new OrderState());
+		returnState = state.doState(cart, currUser);
+		
+		if(returnState) {
+			state.setState(new PayState());
+			returnState = state.doState(cart, currUser);
+			
+			state.setState(new SendState());
+			returnState = state.doState(cart, currUser);			
+		}else {
+			return;
+		}
+		
 		
 	}
 	

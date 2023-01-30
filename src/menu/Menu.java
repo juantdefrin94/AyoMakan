@@ -224,13 +224,13 @@ public class Menu {
 			else if(paymentName.equalsIgnoreCase("AyoPay") && currUser.getAyoPay() != null) {
 				System.out.print("How much will you top up? ");
 				topUp = sc.getNum();
-				currUser.getAyoPay().setBalance(topUp);
+				currUser.getAyoPay().setBalance(currUser.getAyoPay().getBalance() + topUp);
 				sc.showAlert("Successfully top up AyoPay!");
 				break;
 			}else if(paymentName.equalsIgnoreCase("SophiPay") && currUser.getSophiPay() != null){
 				System.out.print("How much will you top up? ");
 				topUp = sc.getNum();
-				currUser.getSophiPay().setBalance(topUp);
+				currUser.getSophiPay().setBalance(currUser.getSophiPay().getBalance() + topUp);
 				sc.showAlert("Successfully top up SophiPay!");
 				break;
 			}else if(!paymentName.equalsIgnoreCase("AyoPay") && !paymentName.equalsIgnoreCase("SophiPay")){

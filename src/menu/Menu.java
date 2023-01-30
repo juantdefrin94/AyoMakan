@@ -184,12 +184,12 @@ public class Menu {
 				newPaymentMethod = payMethodFactory.addPaymentMethod("AyoPay");
 				currUser.setAyoPay(newPaymentMethod);
 				sc.showAlert("Successfully made AyoPay!");
-				break;
+				return;
 			case 2:
 				newPaymentMethod = payMethodFactory.addPaymentMethod("SophiPay");
 				currUser.setAyoPay(newPaymentMethod);
 				sc.showAlert("Successfully made SophiPay!");
-				break;
+				return;
 			case 0:
 				break;
 			default:
@@ -219,20 +219,22 @@ public class Menu {
 			System.out.print("Select the payment method that you want to top up [ AyoPay | SophiPay | Cancel ]: ");
 			paymentName = sc.getText();
 			if(paymentName.equalsIgnoreCase("Cancel")) return;
-			else if(paymentName.equalsIgnoreCase("AyoPay")) {
+			else if(paymentName.equalsIgnoreCase("AyoPay") && currUser.getAyoPay() != null) {
 				System.out.print("How much will you top up? ");
 				topUp = sc.getNum();
 				currUser.getAyoPay().setBalance(topUp);
 				sc.showAlert("Successfully top up AyoPay!");
 				break;
-			}else if(paymentName.equalsIgnoreCase("SophiPay")){
+			}else if(paymentName.equalsIgnoreCase("SophiPay") && currUser.getSophiPay() != null){
 				System.out.print("How much will you top up? ");
 				topUp = sc.getNum();
 				currUser.getSophiPay().setBalance(topUp);
 				sc.showAlert("Successfully top up SophiPay!");
 				break;
-			}else {
+			}else if(!paymentName.equalsIgnoreCase("AyoPay") && !paymentName.equalsIgnoreCase("SophiPay")){
 				sc.showAlert("Please Input between [ AyoPay | SophiPay | Cancel ]!");
+			}else {
+				sc.showAlert("You don't have that payment method, please add first!");
 			}
 		}
 	}
@@ -312,8 +314,14 @@ public class Menu {
 			state.setState(new PayState());
 			returnState = state.doState(cart, currUser);
 			
+			if(!returnState) return;
+			
 			state.setState(new SendState());
-			returnState = state.doState(cart, currUser);			
+			returnState = state.doState(cart, currUser);
+			
+			if(!returnState) return;
+			
+			sc.showAlert("Enjoy The Food, Thanks for Using AyoMakan!");
 		}else {
 			return;
 		}

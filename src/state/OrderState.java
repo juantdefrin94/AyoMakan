@@ -22,6 +22,7 @@ public class OrderState implements IState{
 			System.out.printf("  . Total = %d x %d = %d\n", foodPrice, quantity, (foodPrice * quantity));
 			totalFoodPrice += (foodPrice * quantity);
 		}
+		cart.setFinalPrice(totalFoodPrice);
 		System.out.println("Total Price : " + totalFoodPrice);
 		String pil = "";
 		boolean buy = false;

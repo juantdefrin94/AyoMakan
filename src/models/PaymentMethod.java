@@ -2,17 +2,17 @@ package models;
 
 public class PaymentMethod {
 
-	private int balance;
+	private double balance;
 	private double disc;
 	
-	public PaymentMethod(int balance, double disc) {
+	public PaymentMethod(double balance, double disc) {
 		this.balance = balance;
 		this.disc = disc;
 	}
-	public int getBalance() {
+	public double getBalance() {
 		return balance;
 	}
-	public void setBalance(int balance) {
+	public void setBalance(double balance) {
 		this.balance = balance;
 	}
 	public double getDisc() {

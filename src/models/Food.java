@@ -8,11 +8,10 @@ public class Food {
 	private Integer foodPrice;
 	private FoodOrderState state;
 	
-	public Food(String foodName, Integer foodPrice, FoodOrderState state) {
+	public Food(String foodName, Integer foodPrice) {
 		super();
 		this.foodName = foodName;
 		this.foodPrice = foodPrice;
-		this.state = state;
 	}
 	public String getFoodName() {
 		return foodName;

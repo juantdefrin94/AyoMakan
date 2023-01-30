@@ -6,10 +6,12 @@ public class FoodCart {
 
 	private ArrayList<Food>foodCart;
 	private ArrayList<Integer>foodQuantity;
+	private int finalPrice;
 	
 	public FoodCart() {
 		foodCart = new ArrayList<>();
 		foodQuantity= new ArrayList<>();
+		finalPrice = 0;
 	}
 
 	public ArrayList<Food> getFoodCart() {
@@ -26,6 +28,14 @@ public class FoodCart {
 
 	public void setFoodQuantity(ArrayList<Integer> foodQuantity) {
 		this.foodQuantity = foodQuantity;
+	}
+
+	public int getFinalPrice() {
+		return finalPrice;
+	}
+
+	public void setFinalPrice(int finalPrice) {
+		this.finalPrice = finalPrice;
 	}
 	
 }

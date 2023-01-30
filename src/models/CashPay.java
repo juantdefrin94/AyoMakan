@@ -5,7 +5,7 @@ public class CashPay extends PaymentMethod implements Payment{
 	private String paymentName;
 	
 	public CashPay() {
-		super(0, 0);
+		super(1000000000, 0);
 		this.paymentName = "Cash";
 	}
 

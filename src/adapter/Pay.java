@@ -13,8 +13,8 @@ public class Pay {
 	}
 
 	//passing tagihan yang harus di bayar (mungkin invoice) -> passing invoice (str)
-	public void payBill(int bill) {
-		
+	public double payBill(int bill) {
+		return paymentMethod.payingBill(bill);
 	}
 
 }

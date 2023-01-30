@@ -2,11 +2,14 @@ package models;
 
 import java.util.ArrayList;
 
+import state.FoodOrderState;
+
 public class FoodCart {
 
 	private ArrayList<Food>foodCart;
 	private ArrayList<Integer>foodQuantity;
 	private int finalPrice;
+	private FoodOrderState state;
 	
 	public FoodCart() {
 		foodCart = new ArrayList<>();
@@ -36,6 +39,14 @@ public class FoodCart {
 
 	public void setFinalPrice(int finalPrice) {
 		this.finalPrice = finalPrice;
+	}
+
+	public FoodOrderState getState() {
+		return state;
+	}
+
+	public void setState(FoodOrderState state) {
+		this.state = state;
 	}
 	
 }

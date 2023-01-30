@@ -19,8 +19,8 @@ public class State implements IState{
 
 	@Override
 	public boolean doState(FoodCart cart, User currUser) {
-		
-		return false;
+		boolean stateReturn = state.doState(cart, currUser);
+		return stateReturn;
 	}
 
 }

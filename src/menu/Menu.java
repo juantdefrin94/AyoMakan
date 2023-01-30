@@ -70,7 +70,7 @@ public class Menu {
 				}
 				sc.showAlert("Wrong Password!\n"); 
 				
-				break;
+				return 0;
 			}
 			
 			i++;
@@ -130,6 +130,7 @@ public class Menu {
 	public void userMainMenu() {
 		int pil = 0;
 		do {
+			clearScreen();
 			System.out.print(
 					"Ay0 m@k4n!!\n" +
 							"===========\n" +
@@ -169,6 +170,7 @@ public class Menu {
 		PaymentMethod newPaymentMethod = null;
 		int pil = 0;
 		do {
+			clearScreen();
 			System.out.print(
 						"Ay0 m@k4n!!\n" +
 						"===========\n" +
@@ -322,11 +324,8 @@ public class Menu {
 			if(!returnState) return;
 			
 			sc.showAlert("Enjoy The Food, Thanks for Using AyoMakan!");
-		}else {
-			return;
 		}
-		
-		
+		return;
 	}
 	
 	private int iterateFood(ArrayList <Food>foodList) {
@@ -343,6 +342,7 @@ public class Menu {
 	public void adminMainMenu() {
 		int pil = 0;
 		do {
+			clearScreen();
 			System.out.print(
 					"===== Admin Menu =====\n" +
 					"Ay0 m@k4n!!\n" +
@@ -431,6 +431,12 @@ public class Menu {
 		currFood.setFoodPrice(newFoodPrice);
 		
 		sc.showAlert("Food is successfully edited!");
+	}
+	
+	public void clearScreen() {
+		for(int i = 0; i < 30; i++) {
+			System.out.println();
+		}
 	}
 	
 }

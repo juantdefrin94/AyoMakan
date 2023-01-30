@@ -31,6 +31,9 @@ public class PayState implements IState{
 			System.out.println("1. SophiPay - Rp. " + currUser.getSophiPay().getBalance());
 			System.out.println("2. Cash");
 			method = 2;
+		}else {
+			System.out.println("1. Cash");
+			method = 3;
 		}
 		System.out.println("0. Cancel Order");
 		
@@ -49,9 +52,14 @@ public class PayState implements IState{
 			 			price = pay("AyoPay", currUser, cart);
 			 			 
 			 		}else {
-			 			//SophiPay
-			 			paymentName = "SophiPay";
-			 			price = pay("SophiPay", currUser, cart);
+			 			if(method == 3) {
+			 				paymentName = "Cash";
+				 			price = pay("Cash", currUser, cart);
+			 			}else {
+			 				//SophiPay
+			 				paymentName = "SophiPay";
+			 				price = pay("SophiPay", currUser, cart);
+			 			}
 			 		}
 			 		break;
 			 	case 2:
@@ -117,6 +125,7 @@ public class PayState implements IState{
 						return true;
 					}
 					//no need to minus the balance if cash pay
+					return true;
 				}
 			}else if(pil.equalsIgnoreCase("N")) {
 				return false;

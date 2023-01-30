@@ -13,6 +13,7 @@ public class User {
 		super();
 		this.username = username;
 		this.password = password;
+		cashPay = new CashPay();
 	}
 
 	public String getUsername() {

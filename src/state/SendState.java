@@ -1,7 +1,5 @@
 package state;
 
-import java.util.ArrayList;
-
 import models.FoodCart;
 import models.User;
 
@@ -9,7 +7,11 @@ public class SendState implements IState{
 
 	@Override
 	public boolean doState(FoodCart cart, User currUser) {
-		return false;
+		cart.setState(new FoodOrderOrderState(cart));
+		do{
+			cart.getState().changeState();
+		}while(!(cart.getState() instanceof FoodOrderDeliveringState));
+		return true;
 	}
 
 }

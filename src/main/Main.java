@@ -21,7 +21,7 @@ public class Main {
 		int pil = 0;
 		int isLoggedIn = 0;
 		while(true) {
-			clearScreen();
+			menu.clearScreen();
 			isLoggedIn = 0;
 			pil = menu.showDefaultMenu();
 			switch (pil) {
@@ -30,11 +30,11 @@ public class Main {
 				if(isLoggedIn == 1 || isLoggedIn == 2) sc.showAlert("Succesfully logged in!");
 				
 				if(isLoggedIn == 1) { 
-					clearScreen();
+					menu.clearScreen();
 					menu.adminMainMenu();
 				}
 				else if(isLoggedIn == 2) {
-					clearScreen();
+					menu.clearScreen();
 					menu.userMainMenu();
 				}
 				break;
@@ -71,12 +71,6 @@ public class Main {
 		foodRepository.addFoodList(newFood);
 	}
 	
-	private void clearScreen() {
-		for(int i = 0; i < 30; i++) {
-			System.out.println();
-		}
-	}
-
 	public static void main(String[] args) {
 		new Main();
 	}

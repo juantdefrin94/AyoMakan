@@ -6,7 +6,6 @@ public class Food {
 
 	private String foodName;
 	private Integer foodPrice;
-	private FoodOrderState state;
 	
 	public Food(String foodName, Integer foodPrice) {
 		super();
@@ -28,15 +27,5 @@ public class Food {
 	public void setFoodPrice(Integer foodPrice) {
 		this.foodPrice = foodPrice;
 	}
-
-	public FoodOrderState getState() {
-		return state;
-	}
-
-	public void setState(FoodOrderState state) {
-		this.state = state;
-	}
-
-	
 
 }

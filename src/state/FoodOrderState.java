@@ -1,15 +1,15 @@
 package state;
 
 import models.Food;
+import models.FoodCart;
 
 public abstract class FoodOrderState {
 	
-	protected Food food;
+	protected FoodCart cart;
 	
-	public FoodOrderState(Food food) {
+	public FoodOrderState(FoodCart cart) {
 		super();
-		this.food = food;
-		food.setState(new FoodOrderOrderState(this.food));
+		this.cart = cart;
 	}
 	
 	public abstract void changeState();
